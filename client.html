@@ -1,0 +1,146 @@
+<style>
+    .display_none{
+        display: none;
+    }
+</style>
+<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var socket = io();
+    $( document ).ready(function() {
+        // Login button action
+        $('.btn-login').bind("click", function(){
+            var username = $('.username input').val();
+            var password = $('.password input').val();
+            if (username == '' || password == ''){
+                alert('Please fill either username or password on the page.');
+            }
+            else{
+                socket.emit('onUserList', username, password);
+                displayUsersOnline();
+
+            }
+            return false;
+        });
+        // Register button action
+        $('.btn-register').bind("click", function(event){
+            $('#create_new').removeClass("display_none");
+            $('#login').addClass("display_none");
+            event.preventDefault();
+        });
+        // Back button action
+        $('.btn-back').bind("click", function(event){
+            $('#create_new').addClass("display_none");
+            $('#login').removeClass("display_none");
+            event.preventDefault();
+        });
+        // Submit button action
+        $('.btn-submit').bind("click", function(event){
+            // Check password
+            var new_username = $('.new_username input').val();
+            var new_password = $('.new_password input').val();
+            var re_new_password = $('.re_new_password input').val();
+            if (new_username == '') {
+                alert('Make sure you input the username for register.');
+            }
+            if (re_new_password == new_password){
+                if (re_new_password != '' && new_password != '' ){
+                    socket.emit('onStoreNewUser', new_username, new_password);
+                    displayUsersOnline();
+                }
+                else{
+                    alert('Make sure you input the valid password for register.');
+                }
+            }
+            else{
+                alert('Make sure you input the same password for register.');
+            }
+            event.preventDefault();
+            return false;
+        });
+    });
+
+
+    function displayUsersOnline(){
+        $('#auth').addClass('display_none');
+        event.preventDefault();
+        console.log(userOnline);
+        for (let i in userOnline) {
+            $("#user_list").append('<div class="list" onclick="onChat(this)" id="'+ userOnline[i] +'">'+ userOnline[i] +'</div>');
+        }
+    }
+
+    function onChat(elt){
+        $("#chat-wrap").removeClass('display_none');
+    }
+
+</script>
+
+
+
+
+<section class="login-block">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 login-sec">
+                <h2 class="text-center">Message App</h2>
+
+                <div id="auth">
+                    <form id="login">
+                        <div class="form-group username">
+                            <label class="text-uppercase">Username</label>
+                            <input type="text" class="form-control" placeholder="">
+                        </div>
+                        <div class="form-group password">
+                            <label class="text-uppercase">Password</label>
+                            <input type="password" class="form-control" placeholder="">
+                        </div>
+                        <div class="form-check">
+                            <button type="submit" class="btn btn-register float-right">Register</button>
+                        </div>
+                        <div class="form-check">
+                            <button type="submit" class="btn btn-login float-right">Submit</button>
+                        </div>
+                    </form>
+                    <form id="create_new" class="display_none">
+                        <div class="form-group new_username">
+                            <label class="text-uppercase">New Username</label>
+                            <input type="text" class="form-control" placeholder="">
+                        </div>
+                        <div class="form-group new_password">
+                            <label class="text-uppercase">New Password</label>
+                            <input type="password" class="form-control" placeholder="">
+                        </div>
+                        <div class="form-group re_new_password">
+                            <label class="text-uppercase">Retype New Password</label>
+                            <input type="password" class="form-control" placeholder="">
+                        </div>
+                        <div class="form-check">
+                            <button type="submit" class="btn btn-back float-right">Back</button>
+                        </div>
+                        <div class="form-check">
+                            <button type="submit" class="btn btn-submit float-right">Submit</button>
+                        </div>
+                    </form>
+                </div>
+
+
+                <div id="user_list">
+                </div>
+
+
+                <div id="chat-wrap" class="display_none">
+                    <div id="chat-area"></div>
+                    <form id="send-message-area">
+                        <p>Your message: </p>
+                        <textarea id="sendie" maxlength = '100'></textarea>
+                        <button>Send</button>
+                    </form>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</section>
