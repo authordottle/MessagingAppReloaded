@@ -1,0 +1,30 @@
+{
+  "name": "messageappweb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "bootstrap": "^4.1.3",
+    "express": "^4.16.3",
+    "express-generator": "^4.16.0",
+    "express-generator-dm": "^1.0.1",
+    "jquery": "^3.3.1",
+    "socket.io": "^2.1.1",
+    "socket.io-client": "^2.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cse3901-osu2018sp-1730/messageAppWeb.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cse3901-osu2018sp-1730/messageAppWeb/issues"
+  },
+  "homepage": "https://github.com/cse3901-osu2018sp-1730/messageAppWeb#readme"
+}

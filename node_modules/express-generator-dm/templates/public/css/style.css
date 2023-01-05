@@ -1,0 +1,41 @@
+
+/* NAVBAR STYLING */
+nav {
+    background-color: white;
+}
+
+nav .brand-logo {
+    color: #424242;
+}
+
+nav .button-collapse {
+    color: #424242;
+}
+
+nav ul li a {
+    color: #424242;
+}
+/* END NAVBAR STYLING */
+
+/* FOOTER STYLING */
+footer.page-footer {
+    background-color: #424242;
+    color: white;
+}
+
+footer h5 {
+    color: white;
+}
+
+footer ul li a {
+ color: white;   
+}
+
+.footer-copyright {
+    color: white;
+}
+
+.footer-copyright a {
+    color: white;
+}
+/* END FOOTER STYLING */
