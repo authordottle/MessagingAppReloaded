@@ -60,7 +60,6 @@
         });
     });
 
-
     function displayUsersOnline(){
         $('#auth').addClass('display_none');
         event.preventDefault();
@@ -73,18 +72,13 @@
     function onChat(elt){
         $("#chat-wrap").removeClass('display_none');
     }
-
 </script>
-
-
-
 
 <section class="login-block">
     <div class="container">
         <div class="row">
             <div class="col-md-4 login-sec">
                 <h2 class="text-center">Message App</h2>
-
                 <div id="auth">
                     <form id="login">
                         <div class="form-group username">
@@ -123,12 +117,7 @@
                         </div>
                     </form>
                 </div>
-
-
-                <div id="user_list">
-                </div>
-
-
+                <div id="user_list"></div>
                 <div id="chat-wrap" class="display_none">
                     <div id="chat-area"></div>
                     <form id="send-message-area">
@@ -137,9 +126,6 @@
                         <button>Send</button>
                     </form>
                 </div>
-
-
-
             </div>
         </div>
     </div>
